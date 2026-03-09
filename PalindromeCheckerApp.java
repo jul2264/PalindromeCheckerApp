@@ -1,6 +1,7 @@
 import java.util.Scanner;
+import java.util.Stack;
 
-public class PalindromeCheckerApp {
+public class UseCase5PalindromeCheckerApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Palindrome Checker Management System\n" +
@@ -8,17 +9,18 @@ public class PalindromeCheckerApp {
                 "System initialized successfully.");
         System.out.print("Input text: ");
         String input = sc.next();
-        char[] characters = input.toCharArray();
-        int start = 0;
-        int end = characters.length - 1;
+        Stack<Character> stack = new Stack<>();
         boolean isPalindrome = true;
-        while (start < end) {
-            if (characters[start] != characters[end]) {
+        for (char ch : input.toCharArray()) {
+            stack.push(ch);
+        }
+        for (int i = 0; i < input.length(); i++) {
+            char poppedChar = stack.pop();
+
+            if (input.charAt(i) != poppedChar) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
         System.out.println("Is it a Palindrome? : " + isPalindrome);
         sc.close();
